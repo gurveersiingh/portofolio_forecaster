@@ -3,9 +3,14 @@ from __future__ import annotations
 import os
 from datetime import datetime, timezone
 
-TICKERS: list[str] = [
-    t.strip() for t in os.environ.get("TICKERS", "AAPL,MSFT,GOOGL,AMZN,NVDA").split(",") if t.strip()
-]
+raw_tickers = os.environ.get("TICKERS", "").strip()
+
+if not raw_tickers:
+    TICKERS: list[str] = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA"]
+else:
+    TICKERS: list[str] = [
+        t.strip() for t in raw_tickers.replace(",", " ").split() if t.strip()
+    ]
 
 START_DATE: str = os.environ.get("START_DATE", "2023-01-01")
 END_DATE: str = os.environ.get("END_DATE", datetime.now(timezone.utc).strftime("%Y-%m-%d"))
