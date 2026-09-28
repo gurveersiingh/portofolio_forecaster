@@ -17,7 +17,7 @@ def get_client() -> Client:
     key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
     if not url or not key:
         raise RuntimeError(
-            "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set - see backend/.env.example"
+            "SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY must be set - see backend/.env"
         )
     return create_client(url, key)
 

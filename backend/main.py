@@ -8,6 +8,12 @@ from src.extract import align_on_common_dates, fetch_universe
 from src.forecast import forecast_universe
 from src.optimize import optimise_weights
 from src.storage import save_run
+from pathlib import Path
+from dotenv import load_dotenv
+
+backend_dir = Path(__file__).resolve().parent
+env_path = backend_dir / ".env"
+load_dotenv(dotenv_path=env_path)
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
